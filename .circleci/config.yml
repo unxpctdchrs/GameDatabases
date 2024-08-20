@@ -8,20 +8,27 @@ jobs:
     executor: android/android
     steps:
       - checkout
-      - android/restore-gradle-cache
+      - restore_cache:
+          key: android-orb-v1-{{ checksum "build.gradle" }}
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
-      - android/run-gradle-command:
-          command: androidDependencies
-      - android/save-gradle-cache
-      - android/run-gradle-command:
-          command: build
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: android-orb-v1-{{ checksum "build.gradle" }}
+      - run:
+          name: Run Build
+          command: ./gradlew build
       - store_artifacts: 
           path: app/build/reports
           destination: reports
-      - android/run-gradle-command:
-          command: lint test
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
       - store_test_results:
           path: app/build/test-results
       - store_artifacts:  
