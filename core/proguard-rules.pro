@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.pandora.gamedatabases.core.data.Resource { *; }
+-keep class com.pandora.gamedatabases.core.data.Resource$* { *; }
+-keep class com.pandora.gamedatabases.core.di.CoreModuleKt { *; }
+-keep class com.pandora.gamedatabases.core.domain.model.Game { *; }
+-keep class com.pandora.gamedatabases.core.domain.repository.IGameRepository { *; }
+-keep class com.pandora.gamedatabases.core.domain.usecase.GameInteractor { *; }
+-keep class com.pandora.gamedatabases.core.domain.usecase.GameUseCase { *; }
+-keep class com.pandora.gamedatabases.core.ui.GameAdapter { *; }
