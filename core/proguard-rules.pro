@@ -27,3 +27,4 @@
 -keep class com.pandora.gamedatabases.core.domain.usecase.GameInteractor { *; }
 -keep class com.pandora.gamedatabases.core.domain.usecase.GameUseCase { *; }
 -keep class com.pandora.gamedatabases.core.ui.GameAdapter { *; }
+-keep class com.pandora.gamedatabases.core.data.source.remote.** { *; }

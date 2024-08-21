@@ -45,6 +45,8 @@ android {
 
 dependencies {
 
+    implementation libs.kotlin.stdlib
+
     //room
     implementation libs.androidx.room.runtime
     ksp libs.androidx.room.compiler

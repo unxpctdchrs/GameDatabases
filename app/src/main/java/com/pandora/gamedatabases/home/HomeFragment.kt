@@ -33,24 +33,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (activity != null) {
-            with(binding?.rvItems) {
-                this?.layoutManager = GridLayoutManager(requireContext(), 2)
-                this?.setHasFixedSize(true)
-            }
+        with(binding?.rvItems) {
+            this?.layoutManager = GridLayoutManager(requireContext(), 2)
+            this?.setHasFixedSize(true)
+        }
 
-            homeViewModel.game.observe(viewLifecycleOwner) { game ->
-                if (game != null) {
-                    when (game) {
-                        is Resource.Loading -> binding?.loader?.visibility = View.VISIBLE
-                        is Resource.Success -> {
-                            binding?.loader?.visibility = View.GONE
-                            loadGames(game.data!!)
-                        }
-                        is Resource.Error -> {
-                            binding?.loader?.visibility = View.GONE
-                            Toast.makeText(requireContext(), "Oops.. something went wrong", Toast.LENGTH_SHORT).show()
-                        }
+        homeViewModel.game.observe(viewLifecycleOwner) { game ->
+            if (game != null) {
+                when (game) {
+                    is Resource.Loading -> binding?.loader?.visibility = View.VISIBLE
+                    is Resource.Success -> {
+                        binding?.loader?.visibility = View.GONE
+                        loadGames(game.data!!)
+                    }
+                    is Resource.Error -> {
+                        binding?.loader?.visibility = View.GONE
+                        Toast.makeText(requireContext(), "Oops.. something went wrong", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

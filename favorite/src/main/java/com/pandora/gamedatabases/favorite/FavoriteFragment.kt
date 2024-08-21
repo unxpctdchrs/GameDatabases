@@ -32,16 +32,14 @@ class FavoriteFragment : Fragment() {
 
         loadKoinModules(favoriteModule)
 
-        if (activity != null) {
-            with(binding?.rvItems) {
-                this?.layoutManager = GridLayoutManager(requireContext(), 2)
-                this?.setHasFixedSize(true)
-            }
+        with(binding?.rvItems) {
+            this?.layoutManager = GridLayoutManager(requireContext(), 2)
+            this?.setHasFixedSize(true)
+        }
 
-            favoriteViewModel.favoriteGame.observe(viewLifecycleOwner) { game ->
-                loadGames(game)
-                binding?.tvNoData?.visibility = if (game.isNotEmpty()) View.GONE else View.VISIBLE
-            }
+        favoriteViewModel.favoriteGame.observe(viewLifecycleOwner) { game ->
+            loadGames(game)
+            binding?.tvNoData?.visibility = if (game.isNotEmpty()) View.GONE else View.VISIBLE
         }
     }
 
